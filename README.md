@@ -1,26 +1,26 @@
-# Agri-Advisor â€” Modules 1, 2, 3 & 4
+# Agri-Advisor — Modules 1, 2, 3 & 4
 
-**Module 1: Crop Recommendation** â€” recommends the most suitable crop
+**Module 1: Crop Recommendation** — recommends the most suitable crop
 given soil nutrients (N, P, K), temperature, humidity, pH, and rainfall.
-**Module 2: Yield Prediction** â€” forecasts expected yield (kg/hectare)
+**Module 2: Yield Prediction** — forecasts expected yield (kg/hectare)
 given weather, soil, and farm-management inputs, with a genuine
 time-based train/test split. Disease detection and price forecasting are
 the remaining modules of the larger Smart Agri-Advisor project.
 
-## Dataset â€” Module 1
+## Dataset — Module 1
 
-2,200 rows, 22 crop classes (100 samples each â€” perfectly balanced), 7
+2,200 rows, 22 crop classes (100 samples each — perfectly balanced), 7
 numeric features. No missing values. Source: standard Crop Recommendation
 Dataset (N, P, K, temperature, humidity, ph, rainfall).
 
-## Dataset â€” Module 2
+## Dataset — Module 2
 
-75,000 rows, 20 Indian states, 22 crops, 2015â€“2024. 27 columns covering
+75,000 rows, 20 Indian states, 22 crops, 2015–2024. 27 columns covering
 weather (rainfall, temperature, humidity, sunshine, GDD, pressure, wind),
 soil (pH, quality, organic carbon, N/P/K, moisture), and farm management
 (irrigation type, seed variety, fertilizer, pesticide use, crop price).
 **Note: this dataset is synthetic** (generated to mirror real agronomic
-relationships) rather than measured field data â€” it's excellent for
+relationships) rather than measured field data — it's excellent for
 learning the ML pipeline end-to-end, but a production system would need
 to retrain on real agricultural-survey data before being trusted for
 actual farm decisions. Source: github.com/Pushkarjay/Crop-Yield-Prediction
@@ -29,33 +29,33 @@ actual farm decisions. Source: github.com/Pushkarjay/Crop-Yield-Prediction
 
 ```
 agri-advisor/
-â”œâ”€â”€ data/
-â”‚   â”œâ”€â”€ crop_recommendation.csv
-â”‚   â””â”€â”€ unified_yield_dataset.csv
-â”œâ”€â”€ models/                       # generated after training
-â”‚   â”œâ”€â”€ crop_model.pkl / scaler.pkl / label_encoder.pkl
-â”‚   â”œâ”€â”€ model_comparison.csv / classification_report.json
-â”‚   â”œâ”€â”€ confusion_matrix.npy / meta.json
-â”‚   â”œâ”€â”€ shap_global_importance.png
-â”‚   â””â”€â”€ yield/
-â”‚       â”œâ”€â”€ yield_model.pkl
-â”‚       â”œâ”€â”€ group_yield_stats.csv   # per (State, Crop) history for lag features
-â”‚       â”œâ”€â”€ model_comparison.csv / meta.json
-â”‚       â””â”€â”€ shap_yield_importance.png
-â”œâ”€â”€ src/
-â”‚   â”œâ”€â”€ train.py           # Module 1: trains & compares 7 classifiers
-â”‚   â”œâ”€â”€ explain.py          # Module 1: SHAP explainability
-â”‚   â”œâ”€â”€ predict.py          # Module 1: CLI single prediction
-â”‚   â”œâ”€â”€ yield_train.py       # Module 2: feature engineering + regression models
-â”‚   â”œâ”€â”€ yield_explain.py      # Module 2: SHAP explainability
-â”‚   â”œâ”€â”€ yield_predict.py      # Module 2: CLI single prediction
-â”‚   â”œâ”€â”€ price_train.py / price_predict.py       # Module 3: price forecasting
-â”‚   â”œâ”€â”€ disease_common.py / disease_train.py    # Module 4: CNN pipeline (train on GPU)
-â”‚   â”œâ”€â”€ disease_predict.py                      # Module 4: diagnosis + Grad-CAM
-â”‚   â””â”€â”€ api.py                 # FastAPI service exposing all modules
-â”œâ”€â”€ tools/make_synthetic_dataset.py             # CPU smoke-test data for Module 4
-â”œâ”€â”€ notebooks/train_disease_colab.ipynb         # one-click GPU training for Module 4
-â””â”€â”€ requirements.txt
+├── data/
+│   ├── crop_recommendation.csv
+│   └── unified_yield_dataset.csv
+├── models/                       # generated after training
+│   ├── crop_model.pkl / scaler.pkl / label_encoder.pkl
+│   ├── model_comparison.csv / classification_report.json
+│   ├── confusion_matrix.npy / meta.json
+│   ├── shap_global_importance.png
+│   └── yield/
+│       ├── yield_model.pkl
+│       ├── group_yield_stats.csv   # per (State, Crop) history for lag features
+│       ├── model_comparison.csv / meta.json
+│       └── shap_yield_importance.png
+├── src/
+│   ├── train.py           # Module 1: trains & compares 7 classifiers
+│   ├── explain.py          # Module 1: SHAP explainability
+│   ├── predict.py          # Module 1: CLI single prediction
+│   ├── yield_train.py       # Module 2: feature engineering + regression models
+│   ├── yield_explain.py      # Module 2: SHAP explainability
+│   ├── yield_predict.py      # Module 2: CLI single prediction
+│   ├── price_train.py / price_predict.py       # Module 3: price forecasting
+│   ├── disease_common.py / disease_train.py    # Module 4: CNN pipeline (train on GPU)
+│   ├── disease_predict.py                      # Module 4: diagnosis + Grad-CAM
+│   └── api.py                 # FastAPI service exposing all modules
+├── tools/make_synthetic_dataset.py             # CPU smoke-test data for Module 4
+├── notebooks/train_disease_colab.ipynb         # one-click GPU training for Module 4
+└── requirements.txt
 ```
 
 ## Setup
@@ -64,7 +64,7 @@ agri-advisor/
 pip install -r requirements.txt
 ```
 
-## Run â€” Module 1 (crop recommendation)
+## Run — Module 1 (crop recommendation)
 
 ```bash
 python src/train.py       # trains & compares models, saves the best
@@ -74,7 +74,7 @@ python src/predict.py --N 90 --P 42 --K 43 --temperature 20.9 \
     --humidity 82 --ph 6.5 --rainfall 202.9
 ```
 
-## Run â€” Module 2 (yield prediction)
+## Run — Module 2 (yield prediction)
 
 ```bash
 python src/yield_train.py    # feature engineering + model comparison
@@ -103,7 +103,7 @@ uvicorn src.api:app --reload --port 8000
 
 | Model | Test accuracy | Macro F1 | CV mean accuracy |
 |---|---|---|---|
-| **Random Forest (chosen)** | **99.55%** | **0.9955** | 99.43% (Â±0.54%) |
+| **Random Forest (chosen)** | **99.55%** | **0.9955** | 99.43% (±0.54%) |
 | Gradient Boosting | 98.86% | 0.9887 | 98.75% |
 | XGBoost | 98.86% | 0.9886 | 98.98% |
 | SVM (RBF) | 98.41% | 0.9840 | 97.61% |
@@ -112,17 +112,17 @@ uvicorn src.api:app --reload --port 8000
 | Logistic Regression | 97.27% | 0.9725 | 96.76% |
 
 SHAP analysis shows **humidity, potassium (K), and nitrogen (N)** are the
-strongest predictors of crop suitability â€” consistent with real
+strongest predictors of crop suitability — consistent with real
 agronomic knowledge, which is a useful sanity check that the model has
 learned something real rather than a dataset artifact.
 
-## Results â€” Module 2 (yield prediction)
+## Results — Module 2 (yield prediction)
 
-Evaluated on a **time-based holdout** (trained on 2015â€“2022, tested on
-unseen 2023â€“2024 â€” not a random split, since real yield forecasting
+Evaluated on a **time-based holdout** (trained on 2015–2022, tested on
+unseen 2023–2024 — not a random split, since real yield forecasting
 never gets to see the future):
 
-| Model | Test RÂ² | RMSE (kg/ha) | MAE (kg/ha) | MAPE |
+| Model | Test R² | RMSE (kg/ha) | MAE (kg/ha) | MAPE |
 |---|---|---|---|---|
 | **XGBoost (chosen)** | **0.9586** | **3,752.8** | 1,636.0 | **16.92%** |
 | Random Forest | 0.9566 | 3,840.5 | 1,680.8 | 18.77% |
@@ -130,20 +130,20 @@ never gets to see the future):
 | Linear Regression | 0.8895 | 6,128.7 | 2,440.9 | 25.49% |
 | Ridge | 0.8889 | 6,146.5 | 2,443.3 | 25.49% |
 
-3-fold CV RÂ² for XGBoost: 0.979 (Â±0.0006) â€” consistent, not a lucky split.
+3-fold CV R² for XGBoost: 0.979 (±0.0006) — consistent, not a lucky split.
 
 Key engineering choices:
-- **Time-based split** (not random) â€” the only honest way to validate a forecasting model
-- **log1p-transformed target** â€” yield spans 3 orders of magnitude across crops (pulses ~700 kg/ha vs sugarcane ~75,000 kg/ha), so training on raw values would let sugarcane errors dominate the loss
-- **Lag + rolling-average features** per (State, Crop) â€” the single strongest predictor, since it captures each crop's baseline yield level; at inference time (`yield_predict.py`), these are looked up from historical group stats rather than assumed known
-- **Interaction terms** (NPK sum, NPK-to-fertilizer ratio, rainfallÃ—temperature)
+- **Time-based split** (not random) — the only honest way to validate a forecasting model
+- **log1p-transformed target** — yield spans 3 orders of magnitude across crops (pulses ~700 kg/ha vs sugarcane ~75,000 kg/ha), so training on raw values would let sugarcane errors dominate the loss
+- **Lag + rolling-average features** per (State, Crop) — the single strongest predictor, since it captures each crop's baseline yield level; at inference time (`yield_predict.py`), these are looked up from historical group stats rather than assumed known
+- **Interaction terms** (NPK sum, NPK-to-fertilizer ratio, rainfall×temperature)
 
 SHAP confirms this is sane: after the lag/rolling features (which mostly
 encode "which crop/region is this"), **rainfall, crop price, fertilizer
 amount, soil quality, and rainfed vs. irrigated** are the top real
-drivers â€” exactly what an agronomist would expect.
+drivers — exactly what an agronomist would expect.
 
-## Module 3 â€” Mandi price forecasting (onion, Lasalgaon)
+## Module 3 — Mandi price forecasting (onion, Lasalgaon)
 
 Data: **real** daily mandi reports (NHRDF / data.gov.in), 2020-03 to 2022-07,
 resampled to 116 weekly points. Source: github.com/amitkaps/onions-dataset.
@@ -177,7 +177,7 @@ python src/price_predict.py --weeks 8 --plot
 # GET http://localhost:8000/forecast/price?weeks=8
 ```
 
-## Module 4 â€” Leaf disease detection (CNN, transfer learning, Grad-CAM)
+## Module 4 — Leaf disease detection (CNN, transfer learning, Grad-CAM)
 
 **Status: pipeline written and smoke-tested on synthetic images (CPU); NOT yet
 trained on real data.** Train it on a GPU (Colab/Kaggle) with
