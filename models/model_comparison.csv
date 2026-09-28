@@ -1,0 +1,8 @@
+model,test_accuracy,macro_f1,cv_mean_accuracy,cv_std
+random_forest,0.9955,0.9955,0.9943,0.0054
+gradient_boosting,0.9886,0.9887,0.9875,0.0069
+xgboost,0.9886,0.9886,0.9898,0.005
+svm_rbf,0.9841,0.984,0.9761,0.0075
+decision_tree,0.9795,0.9794,0.9847,0.0071
+knn,0.9795,0.9793,0.9653,0.0075
+logistic_regression,0.9727,0.9725,0.9676,0.0113

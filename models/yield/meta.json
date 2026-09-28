@@ -1,0 +1,46 @@
+{
+  "best_model": "xgboost",
+  "numeric_features": [
+    "Rainfall_mm",
+    "Temperature_C",
+    "Humidity",
+    "Sunshine_hours",
+    "GDD",
+    "Rainfall_Anomaly",
+    "Pressure_KPa",
+    "Wind_Speed_Kmh",
+    "Soil_pH",
+    "Soil_Quality",
+    "OrganicCarbon",
+    "Nitrogen",
+    "Phosphorus",
+    "Potassium",
+    "Soil_Moisture",
+    "Fertilizer_Amount_kg_per_hectare",
+    "Crop_Price",
+    "NPK_sum",
+    "npk_fertilizer_ratio",
+    "rain_temp_interaction",
+    "yield_lag_1",
+    "yield_rolling_3yr"
+  ],
+  "categorical_features": [
+    "State",
+    "Season",
+    "Crop",
+    "Soil_Type",
+    "Irrigation_Type",
+    "Seed_Variety",
+    "Pesticide_Used"
+  ],
+  "target": "Yield_kg_per_hectare",
+  "target_transform": "log1p",
+  "test_years": [
+    2023,
+    2024
+  ],
+  "test_r2": 0.9586,
+  "test_mape_pct": 16.92,
+  "cv_r2_mean": 0.9789003218739459,
+  "cv_r2_std": 0.0006477636483367378
+}

@@ -1,0 +1,9 @@
+{
+  "market": "Lasalgaon (Unhali)",
+  "best_model": "xgboost_lags",
+  "test_weeks": 16,
+  "test_mape": 14.198313326318079,
+  "test_rmse": 170.87897683533862,
+  "last_observed_date": "2022-07-31",
+  "last_observed_price": 1100.0
+}

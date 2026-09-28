@@ -1,0 +1,6 @@
+model,test_r2,test_rmse_kg_ha,test_mae_kg_ha,test_mape_pct
+xgboost,0.9586,3752.8,1636.0,16.92
+random_forest,0.9566,3840.5,1680.8,18.77
+gradient_boosting,0.9512,4071.4,1790.0,19.31
+linear_regression,0.8895,6128.7,2440.9,25.49
+ridge,0.8889,6146.5,2443.3,25.49
